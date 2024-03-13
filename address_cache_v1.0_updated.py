@@ -1,3 +1,19 @@
+#!/usr/bin/env python
+#
+# Copyright (c) 2017 Nutanix Inc. All rights reserved.
+#
+#
+# Disclaimer: Usage of this tool must be under guidance of Nutanix Support or an authorized partner
+# Summary: Tool to read and manipulate acropolis address cache which stores the MAC-to-IP address mappings.
+# Version of the script: Version 1
+# Compatible software version(s): AHV versions prior to 
+# Brief syntax usage:
+#   python address_cache.py --list
+#   python address_cache.py --get 0 11:ff:ff:ff:ff:ee
+#   python address_cache.py --set 0 11:ff:ff:ff:ff:ee 192.168.0.2
+#   python address_cache.py --del 0 11:ff:ff:ff:ff:ee
+# Caveats: None
+#
 import os
 VIRTUALENV_PATH = "/home/nutanix/.venvs/bin/bin/python3.9"
 if os.path.exists(VIRTUALENV_PATH):
@@ -5,7 +21,9 @@ if os.path.exists(VIRTUALENV_PATH):
     os.environ["PYTHON_TARGET_VERSION"] = "3.9"
   if os.environ.get("PYTHON_TARGET_PATH") is None:
     os.environ["PYTHON_TARGET_PATH"] = VIRTUALENV_PATH
+
 import env
+import gflags
 from datetime import datetime
 import time
 
@@ -16,6 +34,9 @@ from acropolis.common.interfaces import AcropolisInterfaces
 from acropolis.net.address_cache import AcropolisNetworkAddressCache
 from acropolis.utils import AcropolisUuid
 from util.net.protocol.types import MacAddress, IPv4Address
+
+gflags.FLAGS([])
+gflags.FLAGS.logtostderr = True
 
 interfaces = AcropolisInterfaces()
 
