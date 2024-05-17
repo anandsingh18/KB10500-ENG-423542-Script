@@ -41,9 +41,15 @@ gflags.FLAGS.logtostderr = True
 interfaces = AcropolisInterfaces()
 
 def print_syntax_and_exit(program_name):
-  print("Usage:")
-  print("%s \n\t--list\n\t--set <network-id> <mac> <ip>\n\t" \
-        "--get <network-id> <mac>\n\t--del <network-id> <mac>]" % program_name)
+  print("Usage: address_cache.py [options]\n"
+      "Options:\n"
+      "\t--list\t\t\tDisplay the address cache.\n"
+      "\t--set <network-id> <mac> <ip>\n"
+      "\t\t\t\tSet the IP address for the given network ID and MAC address.\n"
+      "\t--get <network-id> <mac>\n"
+      "\t\t\t\tGet the IP address for the given network ID and MAC address.\n"
+      "\t--del <network-id> <mac>\n"
+      "\t\t\t\tDelete the entry for the given network ID and MAC address.")
   sys.exit(1)
 
 def print_address_entry(address_entry):
